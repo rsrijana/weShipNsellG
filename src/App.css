@@ -1,0 +1,60 @@
+body, html, #root {
+  background-color: #f9fafb;
+  font-family: 'Public Sans, sans-serif';
+}
+
+.sideMenu {
+  width: 200px;
+  height: 100%; /* Full height of the container */
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0px
+}
+
+.main-container {
+  /* Stack notification bar and main content vertically */
+  position: absolute;
+  top: 1px;
+  right: 0;
+  width: 84%;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*background-color: bisque;*/
+  height: auto;
+  width: 80%;
+  margin-left: 17%;
+  margin-top: 5%;
+  position: relative;
+}
+
+.dashboard-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboardContent {
+  width: 350px;
+  border: 1px grey;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.user-dashboard{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /*background-color: bisque;*/
+  height: auto;
+  width: 80%;
+  margin-left: 17%;
+  margin-top: 10%;
+  position: relative;
+}
