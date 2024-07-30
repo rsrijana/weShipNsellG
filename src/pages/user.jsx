@@ -108,9 +108,9 @@ export default function DataGridDemo() {
     let navigate = useNavigate();
     const handleClickOpen = () => {
     navigate('/add-user');
+    console.log("user form clicked ")
   };
     return (
-        
         <div className='user-dashboard'>
             <Stack direction = "row" spacing={2}
             sx={{ marginLeft: "auto" }}>
