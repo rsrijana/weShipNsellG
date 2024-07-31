@@ -31,9 +31,9 @@ const Sidebar = () => {
     };
     return (
         <div className='sideMenu'>
-            <h2>Ship and SELL</h2>
+            <h2>#ShipandSELL</h2>
             {buttons.map((button, index) => (
-                <Stack direction="column" spacing={2}>
+                <Stack direction="row" spacing={2}>
                     <Link to={button.link} style={{textDecoration: 'none'}}>
                         <CustomBtn
                             key={index}
