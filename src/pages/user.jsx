@@ -2,15 +2,18 @@ import { useNavigate  } from 'react-router-dom';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
-import {IconButton, TextField} from "@mui/material";
+import { useState } from 'react';
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from '@mui/icons-material/FilterList';
 import {Stack} from '@mui/material';
 import CustomBtn from '../Utility/CustomBtn';
 import { Add } from '@mui/icons-material';
-// import EditIcon from '@mui/icons-material/Edit';
-// import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {Menu, MenuItem, IconButton, TextField} from "@mui/material";
+import {red} from "@mui/material/colors";
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -45,7 +48,8 @@ const columns = [
         field: 'action',
         headerName: 'Action',
         renderCell: (params) => (
-            <MoreVertIcon />
+            
+            <ActionMenu />
         )
     },
 ];
@@ -62,10 +66,49 @@ const rows = [
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
+const ActionMenu = () => {
+    const [anchorEl, setAnchorEl] = useState(null);
+  
+    const handleClick = (event) => {
+        console.log("button clicked")
+      setAnchorEl(event.currentTarget);
+    };
+  
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
+    return (
+
+        <div>
+            <IconButton onClick={handleClick}>
+            <MoreVertIcon />
+            </IconButton>
+            <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleClose}>
+            <MenuItem onClick={handleClose} sx={{ fontSize: 12}}>
+                <EditIcon sx={{ fontSize: 16,
+                                marginRight: 1}} /> Edit
+            </MenuItem>
+            <MenuItem onClick={handleClose} sx={{ fontSize: 12, color:red[500]
+            }}>
+                <DeleteIcon sx={{ fontSize: 16, marginRight: 1, color:red[500]}} /> Delete
+            </MenuItem>
+            <MenuItem onClick={handleClose} sx={{ fontSize: 12 }}>
+                <VisibilityIcon sx={{ fontSize: 16, marginRight: 1 }} /> View Details
+            </MenuItem>
+            </Menu>
+        </div>
+    );
+};
+
 export default function DataGridDemo() {
     let navigate = useNavigate();
     const handleClickOpen = () => {
     navigate('/add-user');
+    console.log("user form clicked ")
   };
     return (
         <div className='user-dashboard'>

@@ -8,7 +8,7 @@ import FulfillmentCenter from '../pages/FulfillmentCenter';
 import Inventory from '../pages/Inventory';
 import Issues from '../pages/Issues';
 import Shipping from '../pages/Shipping';
-import UserForm from "../Utility/Modal";
+import UserForm from "../Utility/UserModal";
 
 const router = () => {
     return (
