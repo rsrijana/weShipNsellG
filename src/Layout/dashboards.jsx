@@ -62,7 +62,7 @@ const Dashboard = () => {
                             />
                         </Item>
                     </Grid>
-                    <Grid item xs={6} md={3}>
+                    <Grid item xs={6} md={4}>
                         <Item><h2>Current Visits</h2>
                             <PieChart
                                 series={[
