@@ -111,7 +111,7 @@ export default function DataGridDemo() {
     console.log("user form clicked ")
   };
     return (
-        <div className='user-dashboard'>
+        <div className='dashboard'>
             <Stack direction = "row" spacing={2}
             sx={{ marginLeft: "auto" }}>
                 <CustomBtn

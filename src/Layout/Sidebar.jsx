@@ -1,5 +1,5 @@
 import React from 'react'
-import {Stack} from '@mui/material';
+import {Divider, Stack} from '@mui/material';
 import {
     Home as HomeIcon, LocalShipping as LocalShippingIcon,
     Person as PersonIcon, Inventory as InventorySharpIcon,
@@ -32,8 +32,10 @@ const Sidebar = () => {
     return (
         <div className='sideMenu'>
             <h2>#ShipandSELL</h2>
+            <br/><br/>
+            <Divider/>
             {buttons.map((button, index) => (
-                <Stack direction="row" spacing={2}>
+                <Stack direction="column" spacing={2}>
                     <Link to={button.link} style={{textDecoration: 'none'}}>
                         <CustomBtn
                             key={index}
@@ -44,6 +46,11 @@ const Sidebar = () => {
                     </Link>
                 </Stack>)
             )}
+            <div>
+                <br/><br/>
+                <Divider/>
+                <h4>user type: admin</h4>
+            </div>
         </div>
     )
 }
