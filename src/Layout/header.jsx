@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, IconButton, TextField, Badge, Menu, MenuItem, Avatar } from '@mui/material';
+import {Stack, IconButton, TextField, Badge, Menu, MenuItem, Avatar, Divider} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
@@ -63,7 +63,7 @@ const Header = () => {
             </div>
           </Stack>
         </div>
-        
+        <Divider/>
       </div>
   )
 }

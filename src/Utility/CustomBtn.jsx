@@ -12,9 +12,9 @@ const CustomBtn  = ({ name, IconComponent, onClick }) => {
                 backgroundColor:'#f9fafb', fontSize:'14px', 
                 height:'50px',
                 letterSpacing:'normal',
-                textAlign:'left',
-                justifyContent: 'flex-start' // Align text to the left
-               
+                  width:'100%',
+                  justifyContent: 'flex-start',
+                paddingLeft:3
               }}
             >
               {name}

@@ -18,7 +18,6 @@ const Dashboard = () => {
       
     return (
         <div className="dashboard">
-
             <Box sx={{flexGrow: 1}}>
                 <h1>Hi, Welcome back 👋</h1>
                 <Grid container spacing={2}>

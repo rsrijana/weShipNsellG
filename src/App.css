@@ -3,18 +3,39 @@ body, html, #root {
   font-family: 'Public Sans, sans-serif';
 }
 
-.sideMenu {
-  width: 200px;
-  height: 100%; /* Full height of the container */
-  padding: 8px 16px;
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 0px
+.hamburger-btn {
+  margin: 20px;
+  z-index: 1000; /* Ensure it is above other elements */
+  position: relative; /* Ensure it stays in place */
 }
 
+.sideMenu {
+  width: 220px;
+  height: 100%; /* Full height of the container */
+  position: fixed;
+  top: 0px;
+  border-right: 1px solid dimgrey;
+  transition: width 0.3s ease; /* Smooth transition for width */
+
+}
+
+.sideMenu.collapsed {
+  width: 0;
+  overflow: hidden; /* Hide the content when collapsed */
+}
+
+.sideMenu.expanded {
+  width: 250px; /* Width when the drawer is expanded */
+}
+
+@media (max-width: 1300px) {
+  .sideMenu {
+    position: relative; /* Change position to relative on mobile */
+  }
+}
+
+/* Default styles */
 .main-container {
-  /* Stack notification bar and main content vertically */
   position: absolute;
   top: 1px;
   right: 0;
@@ -25,7 +46,6 @@ body, html, #root {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /*background-color: bisque;*/
   height: auto;
   width: 80%;
   margin-left: 17%;
@@ -33,28 +53,55 @@ body, html, #root {
   position: relative;
 }
 
-.dashboard-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Responsive styles for screens smaller than or equal to 1300px */
+@media (max-width: 1490px) {
+  .main-container {
+    width: 90%; /* Make the main container take full width */
+    top: 0; /* Adjust top position */
+    right: 0; /* Align it to the left */
+    padding: 0 10px; /* Add some padding for better spacing */
+    z-index : 1;
+  }
+
+  .dashboard {
+    width: 100%; /* Make dashboard take full width */
+    margin-left: 0; /* Remove left margin */
+    margin-top: 5%; /* Adjust top margin if needed */
+    padding: 0 10px; /* Add padding for better layout on smaller screens */
+  }
 }
 
-.dashboardContent {
-  width: 350px;
-  border: 1px grey;
-  border-radius: 5px;
-  text-align: center;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+@media(max-width: 500px){
+  .main-container {
+    width: 80%; /* Make the main container take full width */
+    top: 0; /* Adjust top position */
+    right: 0; /* Align it to the left */
+    padding: 0 10px; /* Add some padding for better spacing */
+    z-index : 1;
+  }
 }
 
-.user-dashboard{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  /*background-color: bisque;*/
-  height: auto;
-  width: 80%;
-  margin-left: 17%;
-  margin-top: 10%;
-  position: relative;
+/* Additional styling for even smaller screens */
+@media (max-width: 900px) {
+  .dashboard {
+    margin-top: 3%; /* Further adjust top margin */
+    padding: 0 5px; /* Reduce padding for smaller screens */
+  }
+
+  .hamburger-btn {
+    margin: 5px; /* Smaller equal spacing on mobile devices */
+  }
 }
+
+@media (max-width: 600px) {
+  .dashboard {
+    margin-top: 2%; /* Further adjust top margin */
+    padding: 0 2px; /* Reduce padding for smaller screens */
+  }
+
+  .hamburger-btn {
+    margin: 5px; /* Smaller equal spacing on mobile devices */
+  }
+}
+
+
