@@ -37,15 +37,14 @@ const Sidebar = () => {
     };
 
     return (
-        <>
-            <Box sx={{padding: 2}}>
+            <Box >
                 {isMobile ? (
                     <div>
                         <IconButton className="hamburger-btn"  color="dimgrey" aria-label="menu" onClick={toggleDrawer}>
                             <MenuIcon />
                         </IconButton>
                         <Drawer anchor="left" open={open} onClose={toggleDrawer}>
-                            <div className={open ? 'sideMenu expanded' : 'sideMenu collapsed'} style={{ width: open ? 250 : 0 }}>
+                            <div className={open ? 'sideMenu expanded' : 'sideMenu collapsed'} style={{ width: open ? 220 : 0 }}>
                                 <h2>#ShipandSELL</h2>
                                 <Divider />
                                 {buttons.map((button, index) => (
@@ -65,6 +64,7 @@ const Sidebar = () => {
                         </Drawer>
                     </div>
                 ) : (
+
                     <div className='sideMenu'>
                         <h2>#ShipandSELL</h2>
                         <Divider />
@@ -84,7 +84,6 @@ const Sidebar = () => {
                     </div>
                 )}
             </Box>
-        </>
     );
 }
 

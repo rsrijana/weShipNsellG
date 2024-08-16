@@ -1,5 +1,5 @@
 import React from 'react';
-import {Stack, IconButton, TextField, Badge, Menu, MenuItem, Avatar, Divider} from '@mui/material';
+import {Stack, IconButton, TextField, Badge, Menu, MenuItem, Avatar} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonIcon from '@mui/icons-material/Person';
@@ -18,7 +18,6 @@ const Header = () => {
   };
   return (
     <div className="main-container">
-        <div className="notification-bar">
           <Stack direction="row" spacing={2} 
               sx={{ padding: 2,
           }}>
@@ -62,8 +61,6 @@ const Header = () => {
               </Menu>
             </div>
           </Stack>
-        </div>
-        <Divider/>
       </div>
   )
 }
