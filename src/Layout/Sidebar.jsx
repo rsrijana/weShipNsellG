@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Divider, Stack, Drawer, IconButton, MenuItem, useMediaQuery, Box } from '@mui/material';
+import {Divider, Stack, Drawer, IconButton, MenuItem, useMediaQuery, Box, Typography} from '@mui/material';
 import {
     Home as HomeIcon, LocalShipping as LocalShippingIcon,
     Person as PersonIcon, Inventory as InventorySharpIcon,
@@ -39,13 +39,16 @@ const Sidebar = () => {
     return (
             <Box >
                 {isMobile ? (
-                    <div>
-                        <IconButton className="hamburger-btn"  color="dimgrey" aria-label="menu" onClick={toggleDrawer}>
+                    <Box>
+                        <IconButton className="hamburger-btn"  color="dimgrey" aria-label="menu" onClick={toggleDrawer}
+                                    sx={{ padding: '24px 12px ' }}>
                             <MenuIcon />
                         </IconButton>
                         <Drawer anchor="left" open={open} onClose={toggleDrawer}>
                             <div className={open ? 'sideMenu expanded' : 'sideMenu collapsed'} style={{ width: open ? 220 : 0 }}>
-                                <h2>#ShipandSELL</h2>
+                                <Typography variant='h5' align="center" padding="29px 10px">
+                                    #ShipandSELL
+                                </Typography>
                                 <Divider />
                                 {buttons.map((button, index) => (
                                     <Link key={index} to={button.link} style={{ textDecoration: 'none' }} onClick={toggleDrawer}>
@@ -59,14 +62,18 @@ const Sidebar = () => {
                                     </Link>
                                 ))}
                                 <Divider />
-                                <h4>user type: admin</h4>
+                                <Typography variant='h5' align="center" padding="29px 10px">
+                                    user type: admin
+                                </Typography>
                             </div>
                         </Drawer>
-                    </div>
+                    </Box>
                 ) : (
 
                     <div className='sideMenu'>
-                        <h2>#ShipandSELL</h2>
+                        <Typography variant='h5' align="center" padding="29px 10px">
+                            #ShipandSELL
+                        </Typography>
                         <Divider />
                         {buttons.map((button, index) => (
                             <Stack key={index} direction="column" spacing={2}>
@@ -80,7 +87,9 @@ const Sidebar = () => {
                             </Stack>
                         ))}
                         <Divider />
-                        <h4>user type: admin</h4>
+                        <Typography fontSize="20px"  padding="28px 25px">
+                            user type: admin
+                        </Typography>
                     </div>
                 )}
             </Box>

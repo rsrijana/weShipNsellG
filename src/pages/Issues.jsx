@@ -1,12 +1,13 @@
 import React from 'react'
+import {Container} from "@mui/material";
 
 const Issues = () => {
   return (
-    <div className='dashboard'>   
-        <div>
-            <h1>This is Issue</h1>
-        </div>
-    </div>
+      <Container>
+          <div className='dashboard'>
+              <h1>This is Issue</h1>
+          </div>
+      </Container>
   )
 }
 
