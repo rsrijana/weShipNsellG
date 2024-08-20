@@ -14,6 +14,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {Menu, MenuItem, IconButton, TextField} from "@mui/material";
 import {red} from "@mui/material/colors";
+import {Container} from "@mui/material";
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -111,6 +112,7 @@ export default function DataGridDemo() {
     console.log("user form clicked ")
   };
     return (
+        <Container>
         <div className='dashboard'>
             <Stack direction = "row" spacing={2}
             sx={{ marginLeft: "auto" }}>
@@ -158,5 +160,6 @@ export default function DataGridDemo() {
                 />
             </Box>
         </div>
+        </Container>
     );
 }

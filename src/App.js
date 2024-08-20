@@ -8,9 +8,11 @@ import './App.css';
 function App() {
   return (
       <div>
-        <Sidebar /> 
-        <Header />
-        <Router />
+          <box sx={{display: "flex"}}>
+              <Sidebar/>
+              <Header/>
+          </box>
+          <Router/>
       </div>
   );
 }

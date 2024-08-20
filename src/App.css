@@ -15,7 +15,7 @@ body, html, #root {
   position: fixed;
   top: 0px;
   border-right: 1px solid dimgrey;
-  transition: width 0.3s ease; /* Smooth transition for width */
+  transition: width 0.1s ease; /* Smooth transition for width */
 
 }
 
@@ -25,7 +25,8 @@ body, html, #root {
 }
 
 .sideMenu.expanded {
-  width: 250px; /* Width when the drawer is expanded */
+  width: 220px; /* Width when the drawer is expanded */
+
 }
 
 @media (max-width: 1300px) {
@@ -39,41 +40,47 @@ body, html, #root {
   position: absolute;
   top: 1px;
   right: 0;
-  width: 84%;
+  width: calc(100% - 220px);
+  border-bottom: 1px solid dimgrey;
+  flex-grow: 1;
 }
 
 .dashboard {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: auto;
-  width: 80%;
-  margin-left: 17%;
-  margin-top: 7%;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-between;*/
+  margin-left: 9%;
+  margin-top: 110px;
   position: relative;
+  /*padding: 10px;*/
+  flex-grow: 1;
+  width: 100%;
 }
 
 /* Responsive styles for screens smaller than or equal to 1300px */
 @media (max-width: 1490px) {
   .main-container {
-    width: 90%; /* Make the main container take full width */
-    top: 0; /* Adjust top position */
-    right: 0; /* Align it to the left */
+    width: 100%; /* Make the main container take full width */
+    top: 1px; /* Adjust top position */
+    /*right: 0; !* Align it to the left *!*/
     padding: 0 10px; /* Add some padding for better spacing */
     z-index : 1;
+
   }
 
   .dashboard {
-    width: 100%; /* Make dashboard take full width */
-    margin-left: 0; /* Remove left margin */
-    margin-top: 5%; /* Adjust top margin if needed */
-    padding: 0 10px; /* Add padding for better layout on smaller screens */
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 1%;
+    width: 98%;
+    position: relative;
+    flex-grow: 1;
   }
 }
 
 @media(max-width: 500px){
   .main-container {
-    width: 80%; /* Make the main container take full width */
+    width: 100%; /* Make the main container take full width */
     top: 0; /* Adjust top position */
     right: 0; /* Align it to the left */
     padding: 0 10px; /* Add some padding for better spacing */
@@ -84,8 +91,10 @@ body, html, #root {
 /* Additional styling for even smaller screens */
 @media (max-width: 900px) {
   .dashboard {
-    margin-top: 3%; /* Further adjust top margin */
-    padding: 0 5px; /* Reduce padding for smaller screens */
+      margin-top: 110px;
+      position: relative;
+      flex-grow: 1;
+      width: 98%;
   }
 
   .hamburger-btn {
@@ -94,14 +103,18 @@ body, html, #root {
 }
 
 @media (max-width: 600px) {
-  .dashboard {
-    margin-top: 2%; /* Further adjust top margin */
-    padding: 0 2px; /* Reduce padding for smaller screens */
-  }
 
   .hamburger-btn {
     margin: 5px; /* Smaller equal spacing on mobile devices */
   }
+  .dashboard {
+    margin-top: 110px;
+    position: relative;
+    /*padding: 10px;*/
+    flex-grow: 1;
+    width: 98%;
+  }
 }
+
 
 
