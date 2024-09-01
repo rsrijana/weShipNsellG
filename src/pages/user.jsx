@@ -15,61 +15,11 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {Menu, MenuItem, IconButton, TextField} from "@mui/material";
 import {red} from "@mui/material/colors";
 import {Container} from "@mui/material";
+import UserModal from "../Utility/UserModal";
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
-    {
-        field: 'firstName',
-        headerName: 'First name',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'lastName',
-        headerName: 'Last name',
-        width: 150,
-        editable: true,
-    },
-    {
-        field: 'age',
-        headerName: 'Age',
-        type: 'number',
-        width: 110,
-        editable: true,
-    },
-    {
-        field: 'fullName',
-        headerName: 'Full name',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 160,
-        valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-    },
-    {
-        field: 'action',
-        headerName: 'Action',
-        renderCell: (params) => (
-            
-            <ActionMenu />
-        )
-    },
-];
-
-const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31},
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31},
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150},
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
-
-const ActionMenu = () => {
+const ActionMenu = ({params, onDelete}) => {
     const [anchorEl, setAnchorEl] = useState(null);
-  
+
     const handleClick = (event) => {
         console.log("button clicked")
       setAnchorEl(event.currentTarget);
@@ -78,7 +28,15 @@ const ActionMenu = () => {
     const handleClose = () => {
       setAnchorEl(null);
     };
-  
+    let navigate = useNavigate();
+    const handleClickDetails =() =>{
+        const userData = encodeURIComponent(JSON.stringify(params.row));
+        navigate(`/details-user?userData=${userData}`);
+    }
+    const handleDelete = () => {
+        onDelete(params.id)
+        handleClose();
+    };
     return (
 
         <div>
@@ -93,11 +51,11 @@ const ActionMenu = () => {
                 <EditIcon sx={{ fontSize: 16,
                                 marginRight: 1}} /> Edit
             </MenuItem>
-            <MenuItem onClick={handleClose} sx={{ fontSize: 12, color:red[500]
+            <MenuItem onClick={handleDelete} sx={{ fontSize: 12, color:red[500]
             }}>
                 <DeleteIcon sx={{ fontSize: 16, marginRight: 1, color:red[500]}} /> Delete
             </MenuItem>
-            <MenuItem onClick={handleClose} sx={{ fontSize: 12 }}>
+            <MenuItem onClick={handleClickDetails} sx={{ fontSize: 12 }}>
                 <VisibilityIcon sx={{ fontSize: 16, marginRight: 1 }} /> View Details
             </MenuItem>
             </Menu>
@@ -106,11 +64,80 @@ const ActionMenu = () => {
 };
 
 export default function DataGridDemo() {
-    let navigate = useNavigate();
+    const [isModalOpen, setModalOpen] = React.useState(false);
+    const columns = [
+        { field: 'id', headerName: 'ID', width: 90 },
+        {
+            field: 'firstName',
+            headerName: 'First name',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'lastName',
+            headerName: 'Last name',
+            width: 150,
+            editable: true,
+        },
+        {
+            field: 'age',
+            headerName: 'Age',
+            type: 'number',
+            width: 110,
+            editable: true,
+        },
+        {
+            field: 'fullName',
+            headerName: 'Full name',
+            description: 'This column has a value getter and is not sortable.',
+            sortable: false,
+            width: 160,
+            valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
+        },
+        {
+            field: 'action',
+            headerName: 'Action',
+            renderCell: (params) => (
+                <ActionMenu params = {params} onDelete={handleDeleteRow} />
+            )
+        },
+    ];
+
+    const [rows, setRows] = React.useState([
+        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
+        { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31},
+        { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 31},
+        { id: 4, lastName: 'Stark', firstName: 'Arya', age: 11 },
+        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+        { id: 6, lastName: 'Melisandre', firstName: null, age: 150},
+        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+        { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+        { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    ]);
+
+    const handleDeleteRow = (id) => {
+        setRows(rows.filter((row) => row.id !== id));
+    };
+
+
+    // let navigate = useNavigate();
     const handleClickOpen = () => {
-    navigate('/add-user');
-    console.log("user form clicked ")
-  };
+        setModalOpen(true);
+  }
+  const handleModalClose = (data) => {
+        setModalOpen(data);
+  }
+    const userData = (data) => {
+        console.log('Data received', data);
+        const lastElement = rows[rows.length - 1];
+        const newRow = {
+            id: lastElement.id + 1,
+            lastName: data.name,
+            firstName: data.name,
+            age: data.phoneNumber
+        };
+        setRows([...rows, newRow]);
+    }
     return (
         <Container>
         <div className='dashboard'>
@@ -119,8 +146,7 @@ export default function DataGridDemo() {
                 <CustomBtn
                     name={'Add User' }
                     IconComponent={Add}
-                    onClick={() => handleClickOpen()}
-                     />
+                    onClick={() => handleClickOpen()}/>
             </Stack>
             <Stack direction="row" spacing={2}
                    sx={{padding: 2}}>
@@ -160,6 +186,7 @@ export default function DataGridDemo() {
                 />
             </Box>
         </div>
+            <UserModal open={isModalOpen} close={handleModalClose} inputData={userData}/>
         </Container>
     );
 }
