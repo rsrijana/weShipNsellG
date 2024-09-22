@@ -4,14 +4,15 @@ import Header from './Layout/header';
 import Sidebar from './Layout/Sidebar';
 import Router from "./Router/router";
 import './App.css';
+import Box from "@mui/material/Box";
 
 function App() {
   return (
       <div>
-          <box sx={{display: "flex"}}>
+          <Box sx={{display: "flex"}}>
               <Sidebar/>
               <Header/>
-          </box>
+          </Box>
           <Router/>
       </div>
   );

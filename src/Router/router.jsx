@@ -8,8 +8,6 @@ import FulfillmentCenter from '../pages/FulfillmentCenter';
 import Inventory from '../pages/Inventory';
 import Issues from '../pages/Issues';
 import Shipping from '../pages/Shipping';
-import UserForm from "../Utility/UserModal";
-import UserDetails from "../Utility/User_details";
 
 const router = () => {
     return (
@@ -23,8 +21,6 @@ const router = () => {
                 <Route path="/issues" element={<Issues/>}/>
                 <Route path="/shipping" element={<Shipping/>}/>
                 <Route path="/user" element={<User/>}/>
-                <Route path="/add-user" element={<UserForm/>} />
-                <Route path ="/details-user" element={<UserDetails/>}/>
             </Routes>
         </div>
     )

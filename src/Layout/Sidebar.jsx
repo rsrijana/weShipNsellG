@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import {Divider, Stack, Drawer, IconButton, MenuItem, useMediaQuery, Box, Typography} from '@mui/material';
+import {
+    Divider,
+    Stack,
+    Drawer,
+    IconButton,
+    MenuItem,
+    useMediaQuery,
+    Box,
+    Typography,
+    ThemeProvider
+} from '@mui/material';
 import {
     Home as HomeIcon, LocalShipping as LocalShippingIcon,
     Person as PersonIcon, Inventory as InventorySharpIcon,
@@ -12,6 +22,7 @@ import NotificationImportantSharpIcon from '@mui/icons-material/NotificationImpo
 import CustomBtn from '../Utility/CustomBtn';
 import { Link } from "react-router-dom";
 import '../App.css';
+import theme from "../Assets/theme";
 
 const Sidebar = () => {
     const [open, setOpen] = useState(false);
@@ -37,62 +48,64 @@ const Sidebar = () => {
     };
 
     return (
-            <Box >
-                {isMobile ? (
-                    <Box>
-                        <IconButton className="hamburger-btn"  color="dimgrey" aria-label="menu" onClick={toggleDrawer}
-                                    sx={{ padding: '24px 12px ' }}>
-                            <MenuIcon />
-                        </IconButton>
-                        <Drawer anchor="left" open={open} onClose={toggleDrawer}>
-                            <div className={open ? 'sideMenu expanded' : 'sideMenu collapsed'} style={{ width: open ? 220 : 0 }}>
-                                <Typography variant='h5' align="center" padding="29px 10px">
-                                    #ShipandSELL
-                                </Typography>
-                                <Divider />
-                                {buttons.map((button, index) => (
-                                    <Link key={index} to={button.link} style={{ textDecoration: 'none' }} onClick={toggleDrawer}>
-                                        <MenuItem>
-                                            <CustomBtn
-                                                name={button.name}
-                                                IconComponent={button.icon}
-                                                onClick={() => handleButtonClick(button.name)}
-                                            />
-                                        </MenuItem>
-                                    </Link>
-                                ))}
-                                <Divider />
-                                <Typography variant='h5' align="center" padding="29px 10px">
-                                    user type: admin
-                                </Typography>
-                            </div>
-                        </Drawer>
-                    </Box>
-                ) : (
+            <ThemeProvider theme={theme}>
+                <Box >
+                    {isMobile ? (
+                        <Box>
+                            <IconButton className="hamburger-btn"  color="1c252e" aria-label="menu" onClick={toggleDrawer}
+                                        sx={{ padding: '24px 12px ' }}>
+                                <MenuIcon />
+                            </IconButton>
+                            <Drawer anchor="left" open={open} onClose={toggleDrawer}>
+                                <div className={open ? 'sideMenu expanded' : 'sideMenu collapsed'} style={{ width: open ? 220 : 0 }}>
+                                    <Typography variant='h5' align="center" padding="29px 10px">
+                                        #ShipandSELL
+                                    </Typography>
+                                    <Divider />
+                                    {buttons.map((button, index) => (
+                                        <Link key={index} to={button.link} style={{ textDecoration: 'none' }} onClick={toggleDrawer}>
+                                            <MenuItem>
+                                                <CustomBtn
+                                                    name={button.name}
+                                                    IconComponent={button.icon}
+                                                    onClick={() => handleButtonClick(button.name)}
+                                                />
+                                            </MenuItem>
+                                        </Link>
+                                    ))}
+                                    <Divider />
+                                    <Typography variant='h5' align="center" padding="29px 10px">
+                                        user type: admin
+                                    </Typography>
+                                </div>
+                            </Drawer>
+                        </Box>
+                    ) : (
 
-                    <div className='sideMenu'>
-                        <Typography variant='h5' align="center" padding="29px 10px">
-                            #ShipandSELL
-                        </Typography>
-                        <Divider />
-                        {buttons.map((button, index) => (
-                            <Stack key={index} direction="column" spacing={2}>
-                                <Link to={button.link} style={{ textDecoration: 'none' }}>
-                                    <CustomBtn
-                                        name={button.name}
-                                        IconComponent={button.icon}
-                                        onClick={() => handleButtonClick(button.name)}
-                                    />
-                                </Link>
-                            </Stack>
-                        ))}
-                        <Divider />
-                        <Typography fontSize="20px"  padding="28px 25px">
-                            user type: admin
-                        </Typography>
-                    </div>
-                )}
-            </Box>
+                        <div className='sideMenu'>
+                            <Typography variant='h5' align="center" padding="29px 10px">
+                                #ShipandSELL
+                            </Typography>
+                            <Divider />
+                            {buttons.map((button, index) => (
+                                <Stack key={index} direction="column" spacing={2}>
+                                    <Link to={button.link} style={{ textDecoration: 'none' }}>
+                                        <CustomBtn
+                                            name={button.name}
+                                            IconComponent={button.icon}
+                                            onClick={() => handleButtonClick(button.name)}
+                                        />
+                                    </Link>
+                                </Stack>
+                            ))}
+                            <Divider />
+                            <Typography fontSize="20px"  padding="28px 25px">
+                                user type: admin
+                            </Typography>
+                        </div>
+                    )}
+                </Box>
+            </ThemeProvider>
     );
 }
 
