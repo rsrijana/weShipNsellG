@@ -80,15 +80,15 @@ export default function DataGridDemo() {
     const [editData, setEditData] = useState();
     const [search, setSearch] = useState('');
     const [rows, setRows] = useState([
-        { id: 1, name: 'Snow', email: "Jon@gmail.com", address: 'Jon', phoneNumber: 141651213 },
-        { id: 2, name: 'Lannister', email: 'Cersei@gmail.com', address: 'Cersei', phoneNumber: 3513213211 },
-        { id: 3, name: 'Lannister', email: 'Jaime@gmail.com', address: 'Jaime', phoneNumber: 365651511 },
-        { id: 4, name: 'Stark', email: 'Arya@gmail.com', address: 'Arya', phoneNumber: 18845461 },
-        { id: 5, name: 'Targaryen', email: 'Daenerys@gmail.com', address: 'Daenerys', phoneNumber: null },
-        { id: 6, name: 'Melisandre', email: 'Melisandre@gmail.com', address: null, phoneNumber: 169868450 },
-        { id: 7, name: 'Clifford', email: 'Ferrara@gmail.com', address: 'Ferrara', phoneNumber: 4684684654 },
+        { id: 1, name: 'Snow', email: "Jon@gmail.com", address: 'Jon', phoneNumber: 141651213},
+        { id: 2, name: 'Lannister', email: 'Cersei@gmail.com', address: 'Cersei', phoneNumber: 3513213211},
+        { id: 3, name: 'Lannister', email: 'Jaime@gmail.com', address: 'Jaime', phoneNumber: 365651511},
+        { id: 4, name: 'Stark', email: 'Arya@gmail.com', address: 'Arya', phoneNumber: 18845461},
+        { id: 5, name: 'Targaryen', email: 'Daenerys@gmail.com', address: 'Daenerys', phoneNumber: null},
+        { id: 6, name: 'Melisandre', email: 'Melisandre@gmail.com', address: null, phoneNumber: 169868450},
+        { id: 7, name: 'Clifford', email: 'Ferrara@gmail.com', address: 'Ferrara', phoneNumber: 4684684654},
         { id: 8, name: 'Frances', email: 'Rossini@gmail.com', address: 'Rossini', phoneNumber: 3654524224 },
-        { id: 9, name: 'Roxie', email: 'Harvey@gmail.com', address: 'Harvey', phoneNumber: 65654654 },
+        { id: 9, name: 'Roxie', email: 'Harvey@gmail.com', address: 'Harvey', phoneNumber: 65654654},
     ]);
 
     const filteredRows = rows.filter(row => {
@@ -132,6 +132,7 @@ export default function DataGridDemo() {
                     email: data.email,
                     address: data.address,
                     phoneNumber: data.phoneNumber,
+                    role: data.role
                 };
                 setRows([...rows, newRow]);
             }
@@ -139,11 +140,13 @@ export default function DataGridDemo() {
     };
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        { field: 'id', headerName: 'ID', width: 50 },
         { field: 'name', headerName: 'Name', width: 150, editable: false },
         { field: 'email', headerName: 'Email', width: 200, editable: false },
-        { field: 'address', headerName: 'Address', width: 150, editable: false },
+        { field: 'address', headerName: 'Address', width: 120, editable: false },
         { field: 'phoneNumber', headerName: 'Phone Number', width: 150 },
+        { field: 'role', headerName: 'Role', width: 200 },
+
         {
             field: 'action',
             headerName: 'Action',

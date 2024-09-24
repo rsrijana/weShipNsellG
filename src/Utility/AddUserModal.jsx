@@ -17,8 +17,16 @@ const AddUserModal = ({open, close, inputData, editData}) => {
     name: "",
     email: "",
     address: "",
-    phoneNumber: ""
+    phoneNumber: "",
+    role:""
   });
+
+  const clearFiled =()=>{
+    setUser({
+      name:"", email: "",
+      address: "", phoneNumber: "",role: ""
+    })
+  }
 
   const handleClose = ()=>{
     if(close){
@@ -30,11 +38,12 @@ const AddUserModal = ({open, close, inputData, editData}) => {
   }
 
   const handleSubmit =()=>{
-    if(inputData){
-      inputData(user);
+    if(editData){
+      editData(user);
     }
     else{
-      editData(user);
+      inputData(user);
+      clearFiled();
     }
     handleClose();
   }
@@ -49,7 +58,8 @@ const AddUserModal = ({open, close, inputData, editData}) => {
         name: editData.name || "",
         email: editData.email || "",
         address: editData.address || "",
-        phoneNumber: editData.phoneNumber || ""
+        phoneNumber: editData.phoneNumber || "",
+        role: editData.role || ""
       });
     }
   },[editData])
@@ -134,24 +144,41 @@ const AddUserModal = ({open, close, inputData, editData}) => {
              </Box>
          )}
        </div>
-       <div style={{ flex: '1 1 70%', width: '70%', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+       <div style={{flex: '1 1 50%', width: '70%', display: 'flex', flexDirection: 'column', gap: '16px'}}>
          <h2>Person Detail</h2>
-         <TextField label="Name" fullWidth value={user.name} onChange={(e) => setUser({ ...user, name: e.target.value })} />
-         <TextField label="Email" fullWidth value={user.email} onChange={(e) => setUser({ ...user, email: e.target.value })} />
-         <TextField label="Address" fullWidth value={user.address} onChange={(e) => setUser({ ...user, address: e.target.value })} />
-         <TextField label="Phone Number" fullWidth value={user.phoneNumber} onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })} />
+         <TextField label="Name" fullWidth value={user.name}
+                    onChange={(e) => setUser({...user, name: e.target.value})}/>
+         <TextField label="Email" fullWidth value={user.email}
+                    onChange={(e) => setUser({...user, email: e.target.value})}/>
+         <TextField label="Address" fullWidth value={user.address}
+                    onChange={(e) => setUser({...user, address: e.target.value})}/>
+         <TextField label="Phone Number" fullWidth value={user.phoneNumber}
+                    onChange={(e) => setUser({...user, phoneNumber: e.target.value})}/>
+         <select
+             value={user.role}
+             onChange={(e) => setUser({...user, role: e.target.value})}
+             required
+             style={{padding: '10px', borderRadius: '4px', borderColor: 'rgba(0, 0, 0, 0.23)'}}
+         >
+           <option value="" disabled>Select Role</option>
+           <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+           <option value="MERCHANT_ADMIN">MERCHANT_ADMIN</option>
+           <option value="MERCHANT_OPS">MERCHANT_OPS</option>
+           <option value="MERCHANT_ACCOUNT_MANAGER">MERCHANT_ACCOUNT_MANAGER</option>
+         </select>
+
        </div>
      </Stack>
      <DialogActions>
        <Button variant="outlined" type="submit" onClick={handleSubmit}>
-         {editData? "Update":"Add"}
+         {editData ? "Update" : "Add"}
        </Button>
-       <Button  onClick={handleClose}>
+       <Button onClick={handleClose}>
          Cancel
        </Button>
      </DialogActions>
    </Dialog>
-  </div>
+ </div>
   )
 }
 
