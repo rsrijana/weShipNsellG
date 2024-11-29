@@ -5,21 +5,29 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
 import { v4 as uuidv4} from 'uuid';
-// import { useNavigate  } from 'react-router-dom';
 import Box from "@mui/material/Box";
 import {Divider, IconButton, Stack} from "@mui/material";
 import {DeleteOutline} from "@mui/icons-material";
 import {useEffect} from "react";
 
-const UserModal = ({open, close, inputData}) => {
+const AddUserModal = ({open, close, inputData, editData}) => {
   // const [open, setOpen] = React.useState(true);
   const [file, setFile] = React.useState(null);
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [address, setAddress] = React.useState('');
-  const [phoneNumber, setPhoneNumber] = React.useState('');
+  const [user, setUser] = React.useState({
+    name: "",
+    email: "",
+    address: "",
+    phoneNumber: "",
+    role:""
+  });
 
-  // let navigate = useNavigate();
+  const clearFiled =()=>{
+    setUser({
+      name:"", email: "",
+      address: "", phoneNumber: "",role: ""
+    })
+  }
+
   const handleClose = ()=>{
     if(close){
       close(false);
@@ -29,28 +37,15 @@ const UserModal = ({open, close, inputData}) => {
     setFile(null);
   }
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    if (name === 'name') setName(value);
-    if (name === 'email') setEmail(value);
-    if (name === 'address') setAddress(value);
-    if (name === 'phone') setPhoneNumber(value);
-  };
-
   const handleSubmit =()=>{
-    const userData = {
-      name: name,
-      email: email,
-      address: address,
-      phoneNumber: phoneNumber
+    if(editData){
+      editData(user);
     }
-
-    if(inputData){
-      inputData(userData);
+    else{
+      inputData(user);
+      clearFiled();
     }
-
     handleClose();
-     console.log('User data:', userData)
   }
 
   useEffect(()=>{
@@ -58,7 +53,16 @@ const UserModal = ({open, close, inputData}) => {
     if(savedImage){
       setFile(savedImage);
     }
-  },[])
+    if (editData) {
+      setUser({
+        name: editData.name || "",
+        email: editData.email || "",
+        address: editData.address || "",
+        phoneNumber: editData.phoneNumber || "",
+        role: editData.role || ""
+      });
+    }
+  },[editData])
 
   const handleChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -88,7 +92,7 @@ const UserModal = ({open, close, inputData}) => {
          },
        }}
    >
-     <DialogTitle>Add User</DialogTitle>
+     <DialogTitle>{ editData? "Edit User": "Add User" }</DialogTitle>
      <Divider/>
      <Stack direction="row" sx={{ padding: 5 }}>
        <div style={{ flex: '0 0 30%', maxWidth: '30%' }}>
@@ -140,35 +144,42 @@ const UserModal = ({open, close, inputData}) => {
              </Box>
          )}
        </div>
-       <div style={{ flex: '1 1 70%', width: '70%' }}>
+       <div style={{flex: '1 1 50%', width: '70%', display: 'flex', flexDirection: 'column', gap: '16px'}}>
          <h2>Person Detail</h2>
-         <TextField autoFocus required margin="dense" id={uuidv4()} name="name" label="Name" type="text"  fullWidth variant="standard"
-         value = {name} onChange={handleInputChange}/>
-         <TextField autoFocus required margin="dense" id={uuidv4()} name="email" label="Email Address" type="email" fullWidth variant="standard"
-         value = {email} onChange={handleInputChange}/>
-         <TextField autoFocus required margin="dense" id={uuidv4()} name="address" label="Address" type="text" fullWidth variant="standard"
-         value = {address} onChange={handleInputChange}/>
-         <TextField required margin="dense" id={uuidv4()} name="phone" label="Phone Number" type="tel" fullWidth variant="standard"
-         value = {phoneNumber} onChange={handleInputChange}/>
+         <TextField label="Name" fullWidth value={user.name}
+                    onChange={(e) => setUser({...user, name: e.target.value})}/>
+         <TextField label="Email" fullWidth value={user.email}
+                    onChange={(e) => setUser({...user, email: e.target.value})}/>
+         <TextField label="Address" fullWidth value={user.address}
+                    onChange={(e) => setUser({...user, address: e.target.value})}/>
+         <TextField label="Phone Number" fullWidth value={user.phoneNumber}
+                    onChange={(e) => setUser({...user, phoneNumber: e.target.value})}/>
+         <select
+             value={user.role}
+             onChange={(e) => setUser({...user, role: e.target.value})}
+             required
+             style={{padding: '10px', borderRadius: '4px', borderColor: 'rgba(0, 0, 0, 0.23)'}}
+         >
+           <option value="" disabled>Select Role</option>
+           <option value="SUPER_ADMIN">SUPER_ADMIN</option>
+           <option value="MERCHANT_ADMIN">MERCHANT_ADMIN</option>
+           <option value="MERCHANT_OPS">MERCHANT_OPS</option>
+           <option value="MERCHANT_ACCOUNT_MANAGER">MERCHANT_ACCOUNT_MANAGER</option>
+         </select>
 
-         <h2>Ship Agent Detail</h2>
-         <TextField autoFocus required margin="dense" id={uuidv4()} name="name" label="Name" type="text" fullWidth variant="standard"/>
-         <TextField autoFocus required margin="dense" id={uuidv4()} name="email" label="Email Address" type="email" fullWidth variant="standard"/>
-         <TextField autoFocus required margin="dense" id={uuidv4()} name="address" label="Address" type="text" fullWidth variant="standard"/>
-         <TextField required margin="dense" id={uuidv4()} name="phone" label="Phone Number" type="tel" fullWidth variant="standard"/>
        </div>
      </Stack>
      <DialogActions>
        <Button variant="outlined" type="submit" onClick={handleSubmit}>
-         Add
+         {editData ? "Update" : "Add"}
        </Button>
-       <Button  onClick={handleClose}>
+       <Button onClick={handleClose}>
          Cancel
        </Button>
      </DialogActions>
    </Dialog>
-  </div>
+ </div>
   )
 }
 
-export default UserModal
+export default AddUserModal
