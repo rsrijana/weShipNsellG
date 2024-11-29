@@ -8,11 +8,13 @@ import FulfillmentCenter from '../pages/FulfillmentCenter';
 import Inventory from '../pages/Inventory';
 import Issues from '../pages/Issues';
 import Shipping from '../pages/Shipping';
+import Login from '../auth/login';
 
 const router = () => {
     return (
         <div>
             <Routes>
+                <Route path="/login" element={<Login/>}/>
                 <Route path="/" element={<Dashboard/>}/>
                 <Route path="/calender" element={<Calender/>}/>
                 <Route path="/orders" element={<CustomerOrders/>}/>
