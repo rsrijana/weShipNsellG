@@ -19,6 +19,7 @@ import PostAddSharpIcon from '@mui/icons-material/PostAddSharp';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import InsertInvitationSharpIcon from '@mui/icons-material/InsertInvitationSharp';
 import NotificationImportantSharpIcon from '@mui/icons-material/NotificationImportantSharp';
+import BusinessRoundedIcon from '@mui/icons-material/BusinessRounded';
 import CustomBtn from '../Utility/CustomBtn';
 import { Link } from "react-router-dom";
 import '../App.css';
@@ -30,6 +31,7 @@ const Sidebar = () => {
 
     const buttons = [
         { name: 'Dashboard', icon: HomeIcon, link: '/' },
+        { name: 'Organization', icon: BusinessRoundedIcon, link: '/organization'},
         { name: 'Fulfillment Center', icon: LocalShippingIcon, link: '/fulfillment-center' },
         { name: 'User', icon: PersonIcon, link: '/user' },
         { name: 'Inventory', icon: InventorySharpIcon, link: '/inventory' },
@@ -37,6 +39,7 @@ const Sidebar = () => {
         { name: 'Customer Orders', icon: NoteAddIcon, link: '/orders' },
         { name: 'Calendar', icon: InsertInvitationSharpIcon, link: '/calendar' },
         { name: 'Issues', icon: NotificationImportantSharpIcon, link: '/issues' }
+
     ];
 
     const handleButtonClick = (name) => {

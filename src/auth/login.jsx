@@ -23,9 +23,8 @@ const Login = ({ onLogin }) => {
                 `${process.env.REACT_APP_API_URL}api/auth/login`,
                 { username, password }
             );
-
-            const token = response.data.token; // Adjust based on your API's response
-            alert(`Login successful! Token: ${token}`);
+            console.log(response)
+            const token = response.data; // Adjust based on your API's response
 
             // Save token to localStorage/sessionStorage
             localStorage.setItem("authToken", token);

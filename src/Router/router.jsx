@@ -9,6 +9,7 @@ import Inventory from '../pages/Inventory';
 import Issues from '../pages/Issues';
 import Shipping from '../pages/Shipping';
 import Login from '../auth/login';
+import Organization  from "../pages/organization/Organization";
 
 const router = () => {
     return (
@@ -16,6 +17,7 @@ const router = () => {
             <Routes>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/" element={<Dashboard/>}/>
+                <Route path="/organization" element={<Organization/>}/>
                 <Route path="/calender" element={<Calender/>}/>
                 <Route path="/orders" element={<CustomerOrders/>}/>
                 <Route path="/fulfillment-center" element={<FulfillmentCenter/>}/>

@@ -4,8 +4,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useState } from 'react';
 import SearchIcon from "@mui/icons-material/Search";
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { Stack, ThemeProvider } from '@mui/material';
-import CustomBtn from '../Utility/CustomBtn';
+import {Button, Stack, ThemeProvider} from '@mui/material';
+// import CustomBtn from '../Utility/CustomBtn';
 import { Add } from '@mui/icons-material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -160,13 +160,6 @@ export default function DataGridDemo() {
         <ThemeProvider theme={theme}>
             <Container>
                 <div className="dashboard">
-                    <Stack direction="row" spacing={2} sx={{ marginLeft: "auto" }}>
-                        <CustomBtn
-                            name={'Add User'}
-                            IconComponent={Add}
-                            onClick={() => handleClickOpen()}
-                        />
-                    </Stack>
                     <Stack direction="row" spacing={2} sx={{ padding: 2 }}>
                         <TextField
                             variant="outlined"
@@ -180,11 +173,20 @@ export default function DataGridDemo() {
                             value={search}
                             onChange={handleSearchChange}
                         />
-                        <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+                        <div style={{ marginRight: 'auto', display: 'flex', alignItems: 'centre' }}>
                             <IconButton aria-label="user profile">
                                 <FilterListIcon />
                             </IconButton>
                         </div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            name={'Add User'}
+                            IconComponent={Add}
+                            onClick={() => handleClickOpen()}
+                        >
+                            Add User
+                        </Button>
                     </Stack>
                     <Box sx={{ height: 400, width: '100%' }}>
                         <DataGrid
