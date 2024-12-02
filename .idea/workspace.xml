@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c21b496-fef5-4a8a-b59b-932e2effcbcb" name="Changes" comment="responsive part done in mobile view and in desktop view.">
-      <change afterPath="$PROJECT_DIR$/src/pages/organization/Organization.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/organization/addOrganizational.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Layout/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Layout/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router/router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/router.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utility/AddUserModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utility/AddUserModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organization/Organization.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organization/Organization.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organization/addOrganizational.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organization/addOrganizational.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +112,8 @@
       <workItem from="1732849763130" duration="6104000" />
       <workItem from="1732856529166" duration="542000" />
       <workItem from="1732857098333" duration="121000" />
-      <workItem from="1733063826992" duration="6839000" />
+      <workItem from="1733063826992" duration="7593000" />
+      <workItem from="1733136310557" duration="21127000" />
     </task>
     <servers />
   </component>

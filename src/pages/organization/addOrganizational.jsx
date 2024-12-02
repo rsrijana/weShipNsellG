@@ -8,9 +8,9 @@ import {
     Button,
     Box,
 } from "@mui/material";
+import axios from "axios";
 
-const AddOrganizational = ({ open, onClose }) => {
-    // State for form data
+const AddOrganizational = ({ open, onClose}) => {
     const [formData, setFormData] = useState({
         name: "",
         representative_name: "",
@@ -22,6 +22,8 @@ const AddOrganizational = ({ open, onClose }) => {
         zip: "",
     });
 
+    const [isLoading, setIsLoading] = useState(false);
+
     // Handle form field changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -32,12 +34,40 @@ const AddOrganizational = ({ open, onClose }) => {
     };
 
     // Handle form submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Log form data on submit (you can replace this with your API call)
-        console.log("Form Submitted with data:", formData);
-        onClose(); // Close modal after submission
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent default form submission behavior
+        setIsLoading(true); // Show loading state
+
+        try {
+            // Post the data to the API
+            const token = localStorage.getItem('authToken');
+            const response = await axios.post(
+                `${process.env.REACT_APP_API_URL}api/admin/organization`,
+                formData, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                        // Add any other custom headers here
+                    }
+                },
+            );
+            console.log(response)
+            // Log success and call addOrganization to update the state in parent
+            console.log('Organization added successfully:', response.data);
+
+
+            alert('Organization added successfully!');
+            setFormData(false);
+            onClose(); // Close the modal
+        } catch (error) {
+            console.error('Error adding organization:', error.status );
+            alert('Failed to add organization. Please try again.');
+            onClose();
+        } finally {
+            setIsLoading(false); // Hide loading state
+        }
     };
+
 
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
@@ -51,8 +81,8 @@ const AddOrganizational = ({ open, onClose }) => {
                     sx={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: 2, // Adds spacing between form elements
-                        mt: 2,  // Adds top margin
+                        gap: 2,
+                        mt: 2,
                     }}
                 >
                     <TextField
@@ -126,8 +156,15 @@ const AddOrganizational = ({ open, onClose }) => {
                 </Box>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose}>Cancel </Button>
-                <Button variant="outlined" type="submit" onClick={handleSubmit}>Add</Button>
+                <Button variant="outlined" onClick={onClose}>Cancel</Button>
+                <Button
+                    variant="contained"
+                    type="submit"
+                    onClick={handleSubmit}
+                    disabled={isLoading} // Disable button during loading
+                >
+                    {isLoading ? 'Adding...' : 'Add'}
+                </Button>
             </DialogActions>
         </Dialog>
     );
