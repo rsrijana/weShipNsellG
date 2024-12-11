@@ -151,7 +151,10 @@ export default function DataGridDemo() {
             field: 'action',
             headerName: 'Action',
             renderCell: (params) => (
-                <ActionMenu params={params} onDelete={handleDeleteRow} openEditModal={handleClickOpen} />
+                <ActionMenu
+                    params={params}
+                    onDelete={handleDeleteRow}
+                    openEditModal={handleClickOpen} />
             )
         },
     ];
@@ -205,7 +208,10 @@ export default function DataGridDemo() {
                         />
                     </Box>
                 </div>
-                <AddUserModal open={isModalOpen} close={handleModalClose} inputData={userData} editData={editData} />
+                <AddUserModal open={isModalOpen}
+                              close={handleModalClose}
+                              inputData={userData}
+                              editData={editData} />
             </Container>
         </ThemeProvider>
     );
