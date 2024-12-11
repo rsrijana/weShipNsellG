@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from "react";
 import {
     Dialog,
     DialogTitle,
@@ -9,8 +9,9 @@ import {
     Box,
 } from "@mui/material";
 import axios from "axios";
+import { useSnackbar } from "notistack";  // Import useSnackbar
 
-const AddOrganizational = ({ open, onClose}) => {
+const AddOrganizational = ({ open, onClose, addOrganization, orgData, isEditEnabled }) => {
     const [formData, setFormData] = useState({
         name: "",
         representative_name: "",
@@ -23,6 +24,26 @@ const AddOrganizational = ({ open, onClose}) => {
     });
 
     const [isLoading, setIsLoading] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
+    console.log("this is console log for selected user", orgData);
+    useEffect(() => {
+        if (isEditEnabled === true && orgData) {
+            setFormData({ ...orgData });
+        }
+        else {
+            setFormData({
+                name: "",
+                representative_name: "",
+                contact_number: "",
+                address: "",
+                city: "",
+                state: "",
+                country: "",
+                zip: "",
+            });
+        }
+    }, [isEditEnabled, orgData]);
+
 
     // Handle form field changes
     const handleInputChange = (e) => {
@@ -33,45 +54,48 @@ const AddOrganizational = ({ open, onClose}) => {
         }));
     };
 
-    // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault(); // Prevent default form submission behavior
         setIsLoading(true); // Show loading state
 
+        const url = isEditEnabled === true
+            ? `${process.env.REACT_APP_API_URL}api/admin/organization/${orgData.id}`
+            : `${process.env.REACT_APP_API_URL}api/admin/organization`;
+
+        const method = isEditEnabled === true  ? 'put' : 'post';
+        const token = localStorage.getItem('authToken');
+
         try {
-            // Post the data to the API
-            const token = localStorage.getItem('authToken');
-            const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}api/admin/organization`,
-                formData, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        'Content-Type': 'application/json',
-                        // Add any other custom headers here
-                    }
+            const response = await axios({
+                method,
+                url,
+                data: formData,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json',
                 },
-            );
-            console.log(response)
-            // Log success and call addOrganization to update the state in parent
-            console.log('Organization added successfully:', response.data);
+            });
 
-
-            alert('Organization added successfully!');
-            setFormData(false);
+            if(response.status === 200){
+                enqueueSnackbar("Organization updated successfully!", {variant: "success"})
+            }
+            else {
+                enqueueSnackbar("Organization added successfully!", {variant: "success"});
+            }
+            addOrganization();
+            setFormData(false); // Reset form data
             onClose(); // Close the modal
         } catch (error) {
-            console.error('Error adding organization:', error.status );
-            alert('Failed to add organization. Please try again.');
-            onClose();
+            enqueueSnackbar("Failed to add organization. Please try again.", { variant: "error", autoHideDuration: 2000, }); // Show error message
+            onClose(); // Close the modal on error
         } finally {
-            setIsLoading(false); // Hide loading state
+            setIsLoading(true); // Hide loading state (corrected typo)
         }
     };
 
-
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-            <DialogTitle>Add New Organization</DialogTitle>
+            <DialogTitle>{isEditEnabled === true ? "Edit Organization" : "Add New Organization"}</DialogTitle>
             <DialogContent>
                 <Box
                     component="form"
@@ -95,7 +119,7 @@ const AddOrganizational = ({ open, onClose}) => {
                         onChange={handleInputChange}
                     />
                     <TextField
-                        label="Representative Name"
+                        label="Name"
                         variant="outlined"
                         fullWidth
                         required
@@ -161,9 +185,8 @@ const AddOrganizational = ({ open, onClose}) => {
                     variant="contained"
                     type="submit"
                     onClick={handleSubmit}
-                    disabled={isLoading} // Disable button during loading
                 >
-                    {isLoading ? 'Adding...' : 'Add'}
+                    {isEditEnabled === true ? 'Update' : 'Add'}
                 </Button>
             </DialogActions>
         </Dialog>

@@ -17,19 +17,42 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import AddOrganizational from "./addOrganizational";
 import axios from "axios";
+import {useSnackbar} from "notistack";
 
 const Organization = () => {
     const [isOrganizationalModal, setOrganizationalModal] = useState(false);
     const [menuAnchor, setMenuAnchor] = useState(null);
-    const [selectedRow, setSelectedRow] = useState(null);
-    const [organizationlist, setOrganizationList] = useState([]);
+    const [selectedRow, setSelectedRow] = useState();
+    const [organizationlist, setOrganizationlist] = useState([]);
+    const [isEditMode, setEditMode] = useState(false);
+
+    const token = localStorage.getItem('authToken');
+    const { enqueueSnackbar } = useSnackbar();
 
     // Function to fetch organization list from the server
     const fetchOrganizations = async () => {
-        const token = localStorage.getItem('authToken');
         try {
             const response = await axios.get(
                 `${process.env.REACT_APP_API_URL}api/admin/organization`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+            setOrganizationlist(response.data);
+
+        } catch (error) {
+            console.error("Error fetching organizations:", error);
+            enqueueSnackbar("Failed to fetch organizations. Please try again.", { variant: "error" });
+        }
+    };
+
+    const handleEditOrganization = async () =>{
+        try {
+             await axios.put(
+                `${process.env.REACT_APP_API_URL}api/admin/organization/${selectedRow.id}`,
                 {
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -37,21 +60,43 @@ const Organization = () => {
                     },
                 }
             );
-            setOrganizationList(response.data);
-        } catch (error) {
-            console.error("Error fetching organizations:", error);
-            // Optionally, set an error state if you want to display errors
+            enqueueSnackbar(`Organization with ID: ${selectedRow.id} edit successfully!`, { variant: "success" });
+            console.log("Token:", token);
+
         }
-    };
+        catch (error){
+
+        }
+    }
+
+    const handleDeleteOrganization = async ()=>{
+        try {
+             const response = await axios.delete(
+                `${process.env.REACT_APP_API_URL}api/admin/organization/${selectedRow.id}`,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+
+             if(response.status === 200 ){
+                 await fetchOrganizations();
+             }
+
+        } catch (error) {
+            console.error("Error deleting organization:", error);
+        }
+    }
 
     // Fetch organizations when the component mounts
     useEffect(() => {
         fetchOrganizations();
-    }, []);  // Empty dependency array ensures it's only called once after the component mounts
+    }, []); // The empty array ensures this runs only once after the component mounts
 
     // Function to handle adding a new organization
     const addOrganization = async (newOrg) => {
-        const token = localStorage.getItem('authToken');
         try {
             await axios.post(
                 `${process.env.REACT_APP_API_URL}api/admin/organization`,
@@ -63,8 +108,6 @@ const Organization = () => {
                     },
                 }
             );
-            // After successfully adding, fetch the updated list of organizations
-            fetchOrganizations();
         } catch (error) {
             console.error("Error adding organization:", error);
         }
@@ -81,10 +124,10 @@ const Organization = () => {
         setOrganizationalModal(false);
     };
 
-    // Open the menu for a specific row
-    const handleOpenMenu = (event, row) => {
+
+    const handleOpenMenu = (event, org) => {
         setMenuAnchor(event.currentTarget);
-        setSelectedRow(row);
+        setSelectedRow(org);
     };
 
     // Close the menu
@@ -92,11 +135,11 @@ const Organization = () => {
         setMenuAnchor(null);
         setSelectedRow(null);
     };
-
-    // Handle menu actions (e.g., edit or delete)
     const handleMenuAction = (action) => {
-        console.log(`${action} action on`, selectedRow);
-        handleCloseMenu();
+        if (action === "Edit") {
+            setOrganizationalModal(true);
+            setEditMode(true);
+        }
     };
 
     return (
@@ -172,7 +215,7 @@ const Organization = () => {
                                                 onClose={handleCloseMenu}
                                             >
                                                 <MenuItem onClick={() => handleMenuAction("Edit")}>Edit</MenuItem>
-                                                <MenuItem onClick={() => handleMenuAction("Delete")}>Delete</MenuItem>
+                                                <MenuItem onClick={() => handleDeleteOrganization(org.id)}>Delete</MenuItem>
                                             </Menu>
                                         </TableCell>
                                     </TableRow>
@@ -185,7 +228,9 @@ const Organization = () => {
             <AddOrganizational
                 open={isOrganizationalModal}
                 onClose={handleCloseModal}
-                addOrganization={addOrganization} // Pass the function to AddOrganizational
+                addOrganization={fetchOrganizations} // Pass the function to AddOrganizational
+                orgData={selectedRow} // Pass selected row for editing
+                isEditEnabled={isEditMode} // Pass edit mode state
             />
         </Container>
     );

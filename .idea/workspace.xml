@@ -6,10 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="1c21b496-fef5-4a8a-b59b-932e2effcbcb" name="Changes" comment="responsive part done in mobile view and in desktop view.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/organization/Organization.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organization/Organization.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/organization/addOrganizational.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organization/addOrganizational.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/user.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user.jsx" afterDir="false" />
+    </list>
+    <list id="ea01c273-e249-41b1-b69d-cb4c2ea3c837" name="Changes by Bhabishya" comment="">
+      <change beforePath="$PROJECT_DIR$/src/pages/organization/Organization.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organization/Organization.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/organization/addOrganizational.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/organization/addOrganizational.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +31,48 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/pages/organization/addOrganizational.jsx">
+      <ranges>
+        <range start1="0" end1="1" start2="0" end2="1" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="11" end1="11" start2="11" end2="12" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="12" end1="13" start2="13" end2="14" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="25" end1="25" start2="26" end2="46" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="35" end1="36" start2="56" end2="56" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="39" end1="39" start2="59" end2="66" changelist="ea01c273-e249-41b1-b69d-cb4c2ea3c837" />
+        <range start1="41" end1="51" start2="68" end2="75" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="52" end1="56" start2="76" end2="77" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="57" end1="60" start2="78" end2="86" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="62" end1="65" start2="88" end2="90" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="66" end1="67" start2="91" end2="92" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="69" end1="70" start2="94" end2="94" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="73" end1="74" start2="97" end2="98" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="97" end1="98" start2="121" end2="122" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="163" end1="164" start2="187" end2="187" changelist="ea01c273-e249-41b1-b69d-cb4c2ea3c837" />
+        <range start1="165" end1="166" start2="188" end2="189" changelist="ea01c273-e249-41b1-b69d-cb4c2ea3c837" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/pages/organization/Organization.jsx">
+      <ranges>
+        <range start1="19" end1="19" start2="19" end2="20" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="23" end1="25" start2="24" end2="30" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="28" end1="29" start2="33" end2="33" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="33" end1="33" start2="37" end2="76" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="39" end1="40" start2="82" end2="87" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="41" end1="43" start2="88" end2="89" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="44" end1="45" start2="90" end2="91" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="49" end1="50" start2="95" end2="96" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="53" end1="54" start2="99" end2="99" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="65" end1="67" start2="110" end2="110" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="83" end1="85" start2="126" end2="128" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="86" end1="87" start2="129" end2="130" changelist="ea01c273-e249-41b1-b69d-cb4c2ea3c837" />
+        <range start1="94" end1="96" start2="137" end2="137" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="97" end1="99" start2="138" end2="142" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="174" end1="175" start2="217" end2="218" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+        <range start1="187" end1="188" start2="230" end2="233" changelist="1c21b496-fef5-4a8a-b59b-932e2effcbcb" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -113,7 +161,14 @@
       <workItem from="1732856529166" duration="542000" />
       <workItem from="1732857098333" duration="121000" />
       <workItem from="1733063826992" duration="7593000" />
-      <workItem from="1733136310557" duration="21127000" />
+      <workItem from="1733136310557" duration="21410000" />
+      <workItem from="1733231205663" duration="13727000" />
+      <workItem from="1733314919397" duration="9216000" />
+      <workItem from="1733378277970" duration="21225000" />
+      <workItem from="1733414992874" duration="2789000" />
+      <workItem from="1733417880336" duration="594000" />
+      <workItem from="1733472443145" duration="12574000" />
+      <workItem from="1733932241349" duration="5969000" />
     </task>
     <servers />
   </component>
